@@ -1,4 +1,6 @@
 import React from "react";
+import Feed from "./components/Feed";
+import Sidebar from "./components/Sidebar";
 import Header from "./UI/Header";
 
 function App() {
@@ -6,6 +8,12 @@ function App() {
   
   {/* Header */}
 <Header />
+
+{/* Main */}
+<main className="bg-[#f3f2ef] py-5 flex">
+  <Sidebar />
+  <Feed />
+</main>
   </>;
 }
 

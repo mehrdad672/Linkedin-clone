@@ -7,9 +7,9 @@ const Header = () => {
       <div className="flex items-center">
         <img src={logo} className="w-[34px] h-[30px]" alt="linkedin" />
         <input
-          placeholder="search"
+          placeholder="Search"
           type="text"
-          className=" text-center h-[30px] w-[280px] bg-gray-300 rounded-lg hidden lg:flex "
+          className=" text-center h-[30px] w-[280px] bg-blue-100 rounded-lg hidden lg:flex "
         ></input>
         <button className=" text-gray-700 hover:text-black flex flex-col items-center justify-center lg:hidden ml-3">
           <svg
@@ -38,7 +38,7 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-6 h-6  text-gray-700 group-hover:text-black"
+            className="w-6 h-6  text-gray-500 group-hover:text-black"
           >
             <path
               fillRule="evenodd"
@@ -46,7 +46,7 @@ const Header = () => {
               clipRule="evenodd"
             />
           </svg>
-          <h3 className="text-[10px] text-gray-700 group-hover:text-black hidden md:flex">
+          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             Home
           </h3>
         </a>
@@ -58,12 +58,12 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-6 h-6   text-gray-700 group-hover:text-black"
+            className="w-6 h-6   text-gray-500 group-hover:text-black"
           >
             <path d="M11 5a3 3 0 11-6 0 3 3 0 016 0zM2.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 018 18a9.953 9.953 0 01-5.385-1.572zM16.25 5.75a.75.75 0 00-1.5 0v2h-2a.75.75 0 000 1.5h2v2a.75.75 0 001.5 0v-2h2a.75.75 0 000-1.5h-2v-2z" />
           </svg>
 
-          <h3 className="text-[10px] text-gray-700 group-hover:text-black hidden md:flex">
+          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             My Network
           </h3>
         </a>
@@ -75,7 +75,7 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-6 h-6   text-gray-700 group-hover:text-black"
+            className="w-6 h-6   text-gray-500 group-hover:text-black"
           >
             <path
               fillRule="evenodd"
@@ -85,7 +85,7 @@ const Header = () => {
             <path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 01-9.274 0C3.985 17.585 3 16.402 3 15.055z" />
           </svg>
 
-          <h3 className="text-[10px] text-gray-700 group-hover:text-black hidden md:flex">
+          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             Jobs
           </h3>
         </a>
@@ -97,7 +97,7 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-6 h-6   text-gray-700 group-hover:text-black"
+            className="w-6 h-6   text-gray-500 group-hover:text-black"
           >
             <path
               fillRule="evenodd"
@@ -106,7 +106,7 @@ const Header = () => {
             />
           </svg>
 
-          <h3 className="text-[10px] text-gray-700 group-hover:text-black hidden md:flex">
+          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             Messaging
           </h3>
         </a>
@@ -118,7 +118,7 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-6 h-6  text-gray-700 group-hover:text-black"
+            className="w-6 h-6  text-gray-500 group-hover:text-black"
           >
             <path
               fillRule="evenodd"
@@ -127,7 +127,7 @@ const Header = () => {
             />
           </svg>
 
-          <h3 className="text-[10px] text-gray-700 group-hover:text-black hidden md:flex">
+          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             Notifications
           </h3>
         </a>
