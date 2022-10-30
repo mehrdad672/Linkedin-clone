@@ -3,7 +3,7 @@ import React from "react";
 import logo from "../assets/logo.png";
 const Header = () => {
   return (
-    <header className="flex md:justify-start md:space-x-6 lg:justify-around py-3 space-x-6 ">
+    <header className="flex md:justify-start md:space-x-6 lg:justify-around py-3 space-x-6 sticky top-0 z-10 bg-white ">
       <div className="flex items-center">
         <img src={logo} className="w-[34px] h-[30px]" alt="linkedin" />
         <input

@@ -2,7 +2,7 @@ import React from "react";
 import avatar from '../assets/avatar.jpg'
 const Sidear = () => {
   return (
-    <div className="ml-10">
+    <div className="ml-10 sticky top-0  ">
       <div className="w-[20vw] h-14 bg-cyan-500 rounded-t-xl "></div>
       <div className=" relative w-[20vw] bg-white flex flex-col items-center justify-center border  border-b-gray-300 ">
         <img className=" border-2 border-white w-20 rounded-full absolute -top-10 " src={avatar} ></img>
