@@ -1,21 +1,28 @@
 import React, { useState } from "react";
-import avatar from "../assets/avatar.jpg";
-const Post = ({ name, message, imageUrl, avatarUrl, time }) => {
+import { useSelector } from "react-redux";
+import avatar from "../assets/alt-avatar.webp";
+import { Skeleton } from '@mui/material';
 
+const Post = ({ name, message, imageUrl, avatarUrl, time }) => {
+const user = useSelector(state=>state.auth.user)
   const [liked, setLiked] = useState(false);
   const likedstyle =
-    "w-6 h-6 cursor-pointer hover:scale-125 fill-blue-500 text-white";
+    "w-6 h-6 cursor-pointer hover:scale-110 fill-blue-500  ";
   const unlikedstyle = "w-6 h-6 cursor-pointer hover:scale-125";
   return (
-    <div className="w-[40vw] mt-3 rounded-xl bg-white">
+    
+    <div className="w-[40vw] mt-3 rounded-xl bg-white shadow-lg">
       <div className="px-3 py-3 flex items-center space-x-3">
-        <img className="rounded-full w-8 " src={avatar} alt="avatar" />
-        <div className="flex flex-colّ">
-          <h1 className=" text-gray-700 text-sm">{name}</h1>
+        {user.profilePic && <img className="rounded-full w-8 " src={user.profilePic} alt="avatar" />}
+        {!user.profilePic && <img className="rounded-full w-8 " src={avatar} alt="avatsdar" />}
+
+        <div className="flex flex-col">
+          <h1 className=" text-gray-700 text-sm capitalize ">{name}</h1>
+          {time &&  <p className="text-sm text-gray-500"> {time.toDate().toDateString()} </p>}
         </div>
       </div>
       <p className="p-3 text-gray-700"> {message} </p>
-      <img className="w-full rounded-3xl p-3 shadow-sm" src={imageUrl}></img>
+      {imageUrl && <img className="w-full rounded-3xl p-3 shadow-sm" src={imageUrl}></img>}
       <div className="flex justify-around py-2 ">
         <svg
           onClick={() => setLiked((state) => !state)}

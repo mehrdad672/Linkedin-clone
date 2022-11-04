@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import avatar from "../assets/avatar.jpg";
+import avatar from "../assets/alt-avatar.webp";
 import Modal from "@mui/material/Modal";
 import { useState, useRef } from "react";
 import { db } from "../firebase";
@@ -13,8 +13,10 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 function PostForm() {
+  const user = useSelector((state) => state.auth.user);
   const [modalShow, SetModalShow] = useState(false);
   const modalOpen = () => {
     SetModalShow(true);
@@ -27,14 +29,18 @@ function PostForm() {
     const [enteredUrl, setEnteredUrl] = useState(null);
     const sendPost = (e) => {
       e.preventDefault();
-
-      addDoc(collection(db, "posts"), {
-        name: "Mehrdad",
+if (enteredMessage){
+  addDoc(collection(db, "posts"), {
+        name: user.displayName,
         message: enteredMessage,
         time: serverTimestamp(),
-        imageUrl:enteredUrl
+        imageUrl: enteredUrl,
       });
-
+}else {
+  alert('message shouldnt be empty')
+}
+      
+      
       SetModalShow(false);
     };
     return (
@@ -64,7 +70,22 @@ function PostForm() {
           </div>
           <div>
             <div className="px-3 py-3 flex items-center space-x-3">
-              <img className="rounded-full w-12 " src={avatar} alt="avatar" />
+             
+              {user.profilePic && (
+                <img
+                  className="rounded-full w-12 "
+                  src={user.profilePic}
+                  alt="avatar"
+                />
+              )}
+              {!user.profilePic && (
+                <img
+                  className="rounded-full w-12 "
+                  src={avatar}
+                  alt="avatsdar"
+                />
+              )}
+              
               <h1 className=" text-gray-700 text-lg font-semibold">
                 Mehrdad Roienyan
               </h1>
@@ -106,10 +127,21 @@ function PostForm() {
       <PostFormModal Show={modalShow} Close={modalClose} />
       <div className="  bg-white w-[40vw] h-28 rounded-lg px-3 py-3 ">
         <div className="flex space-x-2">
-          <img
-            className=" border-2 border-white w-12 rounded-full  "
-            src={avatar}
-          ></img>
+        
+           {user.profilePic && (
+                <img
+                  className="border-2 border-white w-12 rounded-full "
+                  src={user.profilePic}
+                  alt="avatar"
+                />
+              )}
+              {!user.profilePic && (
+                <img
+                  className="border-2 border-white w-12 rounded-full "
+                  src={avatar}
+                  alt="avatsdar"
+                />
+              )}
           <button
             onClick={modalOpen}
             className=" w-[30vw] flex hover:bg-gray-200 items-center text-gray-500 h-12 border border-gray-300 rounded-3xl text-start px-3 py-5 focus:outline-none"
