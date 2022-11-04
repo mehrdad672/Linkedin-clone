@@ -6,6 +6,7 @@ import { Skeleton } from '@mui/material';
 const Post = ({ name, message, imageUrl, avatarUrl, time }) => {
 const user = useSelector(state=>state.auth.user)
   const [liked, setLiked] = useState(false);
+  
   const likedstyle =
     "w-6 h-6 cursor-pointer hover:scale-110 fill-blue-500  ";
   const unlikedstyle = "w-6 h-6 cursor-pointer hover:scale-125";
