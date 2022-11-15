@@ -57,12 +57,15 @@ const Login = () => {
         // Signed in
         const signedinuser = userCredential.user;
         // ...
-        
+        localStorage.setItem('user',JSON.stringify(signedinuser))
+        console.log(localStorage.getItem('user'))
         dispatch(signin({
           email: signedinuser.email ,
           displayName : signedinuser.displayName ,
           profilePic: signedinuser.photoURL
         }));
+        
+        console.log(localStorage.getItem('user'))
         setEmail(null);
         setPassword(null);
       })
@@ -76,9 +79,9 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className=" mt-10 bg-cyan-500 w-[30vw] mx-auto border border-gray-300 p-3 rounded-xl">
-        <form onSubmit={signinHandler} className="flex flex-col space-y-3">
+        <form onSubmit={signinHandler} className="flex flex-col space-y-3 shadow-lg ">
           <input
             className="focus:outline-none  p-2 rounded-xl "
             placeholder="Enter your Fullname (only for register)"

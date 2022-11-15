@@ -45,7 +45,7 @@ if (enteredMessage){
     };
     return (
       <Modal open={modalShow} onClose={modalClose} disableAutoFocus>
-        <div className="absolute top-[20%] left-[30%] w-[40vw] h-[25vw] bg-white rounded-2xl">
+        <div className="absolute top-[20%] left-[30%] w-[40vw] h-[25vw] bg-white rounded-2xl border border-gray-200 shadow-lg">
           <div className="flex justify-between items-center px-3 py-3 border-b border-gray-200 ">
             <h3 className="text-lg text-gray-600 font-semibold ">
               Create a post
@@ -86,8 +86,8 @@ if (enteredMessage){
                 />
               )}
               
-              <h1 className=" text-gray-700 text-lg font-semibold">
-                Mehrdad Roienyan
+              <h1 className=" text-gray-700 text-lg font-semibold capitalize">
+              {user.displayName}  
               </h1>
             </div>
             <form className="">
@@ -125,7 +125,7 @@ if (enteredMessage){
   return (
     <>
       <PostFormModal Show={modalShow} Close={modalClose} />
-      <div className="  bg-white w-[40vw] h-28 rounded-lg px-3 py-3 ">
+      <div className="  bg-white w-[40vw] h-28 rounded-lg px-3 py-3 border border-gray-200 shadow-lg ">
         <div className="flex space-x-2">
         
            {user.profilePic && (

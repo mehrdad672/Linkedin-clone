@@ -33,7 +33,6 @@ const Feed = () => {
   return (
     <div className="px-10 ">
       <PostForm />
-      
       {postList}
     </div>
   );

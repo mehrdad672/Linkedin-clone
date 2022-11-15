@@ -1,15 +1,34 @@
-import React from "react";
-
+import React, { useState,useEffect } from "react";
+import { useSelector,useDispatch } from "react-redux";
 import logo from "../assets/logo.png";
+import avatar from "../assets/alt-avatar.webp";
+import { ArrowDownIcon } from "@heroicons/react/24/solid";
+import { Drawer } from '@mui/material';
+import { signin } from "../app/store";
+
 const Header = () => {
+  const dispatch = useDispatch();
+ 
+    const curUserj =  (localStorage.getItem('user'))
+    const curUser=JSON.parse(curUserj)
+    console.log(curUser)
+   //dispatch(signin(curUser ? {email:curUser.email,displayName:curUser.displayName,profilePic:curUser.profilePic}:{email:null,displayName:null,profilePic:null}))
+
+  const [dropdown, setdropdown] = useState(false);
+  const dropdownClose= ()=>{
+    setdropdown(false)
+  }
+  const user = useSelector((state) => state.auth.user);
+ 
+  const isloggedin = useSelector((state) => state.auth.isloggedin);
   return (
-    <header className="flex md:justify-start md:space-x-6 lg:justify-around py-3 space-x-6 sticky top-0 z-10 bg-white ">
+    <header className="flex  items-center   md:space-x-10  py-3 justify-around sticky top-0 z-10 bg-white shadow-lg ">
       <div className="flex items-center">
         <img src={logo} className="w-[34px] h-[30px]" alt="linkedin" />
         <input
           placeholder="Search"
           type="text"
-          className=" text-center h-[30px] w-[280px] bg-blue-100 rounded-lg hidden lg:flex "
+          className=" text-center h-[30px] w-[280px] bg-[#eef3f8] focus:outline-none rounded-lg hidden lg:flex "
         ></input>
         <button className=" text-gray-700 hover:text-black flex flex-col items-center justify-center lg:hidden ml-3">
           <svg
@@ -24,12 +43,10 @@ const Header = () => {
               clipRule="evenodd"
             />
           </svg>
-          <h3 className="text-[10px] hidden md:flex ">
-            Search
-          </h3>
+          <h3 className="text-[10px] hidden md:flex ">Search</h3>
         </button>
       </div>
-      <div className="flex space-x-8">
+      <div className="flex space-x-8 mr-10">
         <a
           href="#"
           className="group flex flex-col items-center justify-center "
@@ -52,7 +69,7 @@ const Header = () => {
         </a>
         <a
           href="#"
-          className="group flex flex-col items-center justify-center "
+          className="hidden md:flex group md:flex-col items-center justify-center "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -63,13 +80,13 @@ const Header = () => {
             <path d="M11 5a3 3 0 11-6 0 3 3 0 016 0zM2.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 018 18a9.953 9.953 0 01-5.385-1.572zM16.25 5.75a.75.75 0 00-1.5 0v2h-2a.75.75 0 000 1.5h2v2a.75.75 0 001.5 0v-2h2a.75.75 0 000-1.5h-2v-2z" />
           </svg>
 
-          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
+          <h3 className="  text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             My Network
           </h3>
         </a>
         <a
           href="#"
-          className="group flex flex-col items-center justify-center "
+          className="group hidden md:flex md:flex-col items-center justify-center "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +102,7 @@ const Header = () => {
             <path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 01-9.274 0C3.985 17.585 3 16.402 3 15.055z" />
           </svg>
 
-          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
+          <h3 className=" text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             Jobs
           </h3>
         </a>
@@ -112,7 +129,7 @@ const Header = () => {
         </a>
         <a
           href="#"
-          className="group flex flex-col items-center justify-center "
+          className="hidden md:flex group md:flex-col items-center justify-center "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -127,10 +144,61 @@ const Header = () => {
             />
           </svg>
 
-          <h3 className="text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
+          <h3 className=" text-[10px] text-gray-500 group-hover:text-black hidden md:flex">
             Notifications
           </h3>
         </a>
+        {isloggedin && (
+          <button onClick={()=>setdropdown(true)} className="group relative">
+            {user.profilePic && (
+              <img
+                className=" w-6 rounded-full grayscale  group-hover:grayscale-0"
+                src={user.profilePic}
+                alt="avatar"
+              />
+            )}
+            {!user.profilePic && (
+              <img
+                className=" w-6 rounded-full grayscale  group-hover:grayscale-0 "
+                src={avatar}
+                alt="avatar"
+              />
+            )}
+            <div className=" md:flex text-gray-500 space-x-1 hidden group-hover:text-black ">
+              <p className="text-[10px] ">Me</p>
+              <ArrowDownIcon className="w-2 text-gray-800" />
+              
+              {dropdown && <div className="absolute z-50 right-0 top-12 w-[300px] p-2 bg-white rounded-2xl cursor-default">
+                  <div className=" flex items-center justify-start space-x-2  ">
+                  {user.profilePic && (
+              <img
+                className="rounded-full w-14"
+                src={user.profilePic}
+                alt="avatar"
+              />
+            )}
+            {!user.profilePic && (
+              <img
+                className=" rounded-full w-14 "
+                src={avatar}
+                alt="avatar"
+              />
+            )}
+                    <div>
+                      <h2 className="capitalize text-sm  text-gray-700 font-semibold">
+                        {user.displayName}
+                      </h2>
+                      <h3 className="text-gray-700 text-sm">{user.email}</h3>
+                    </div>
+                  </div>
+                  <button className="py-2 px-4 shadow-md hover:border-gray-800 hover:shadow-lg border border-gray-500 rounded-full">
+                    logout
+                  </button>
+                </div>}  
+               
+            </div>
+          </button>
+        )}
       </div>
     </header>
   );

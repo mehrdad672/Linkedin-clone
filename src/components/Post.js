@@ -8,11 +8,11 @@ const user = useSelector(state=>state.auth.user)
   const [liked, setLiked] = useState(false);
   
   const likedstyle =
-    "w-6 h-6 cursor-pointer hover:scale-110 fill-blue-500  ";
-  const unlikedstyle = "w-6 h-6 cursor-pointer hover:scale-125";
+    "w-6 h-6 cursor-pointer hover:shadow-md fill-blue-500  ";
+  const unlikedstyle = "w-6 h-6 cursor-pointer hover:shadow-md";
   return (
     
-    <div className="w-[40vw] mt-3 rounded-xl bg-white shadow-lg">
+    <div className="w-[40vw] mt-3 rounded-xl bg-white border border-gray-200 shadow-lg">
       <div className="px-3 py-3 flex items-center space-x-3">
         {user.profilePic && <img className="rounded-full w-8 " src={user.profilePic} alt="avatar" />}
         {!user.profilePic && <img className="rounded-full w-8 " src={avatar} alt="avatsdar" />}
@@ -46,7 +46,7 @@ const user = useSelector(state=>state.auth.user)
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6 cursor-pointer hover:scale-125 "
+          className="w-6 h-6 cursor-pointer hover:shadow-md "
         >
           <path
             strokeLinecap="round"
@@ -60,7 +60,7 @@ const user = useSelector(state=>state.auth.user)
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6 cursor-pointer hover:scale-125 "
+          className="w-6 h-6 cursor-pointer hover:shadow-md "
         >
           <path
             strokeLinecap="round"
@@ -74,7 +74,7 @@ const user = useSelector(state=>state.auth.user)
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6 cursor-pointer hover:scale-125 "
+          className="w-6 h-6 cursor-pointer hover:shadow-md "
         >
           <path
             strokeLinecap="round"

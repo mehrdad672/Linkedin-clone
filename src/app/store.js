@@ -1,10 +1,11 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-
+const curUserj =  (localStorage.getItem('user'))
+    const curUser=JSON.parse(curUserj)
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
-    isloggedin: false,
+    user: curUser,
+    isloggedin: !!curUser,
   },
   reducers: {
     signin: (state, action) => {
