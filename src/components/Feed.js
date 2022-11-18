@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import PostForm from "./PostForm";
-import Skeleton from "react-loading-skeleton";
+import Skeleton from '@mui/material/Skeleton';
 import { db } from "../firebase";
 import {
   collection,
@@ -29,11 +29,11 @@ const Feed = () => {
     );
   }, []);
   console.log(posts)
-  const postList = posts.map(p =><Post name={p.data.name} message={p.data.message} imageUrl={p.data.imageUrl} time={p.data.time} /> )
+  const postList = posts.map(p =><Post key={p.data.time} name={p.data.name} message={p.data.message} imageUrl={p.data.imageUrl} time={p.data.time} /> )
   return (
     <div className="px-10 ">
       <PostForm />
-      {postList}
+      {postList ? postList : <h1>loading...</h1>  }
     </div>
   );
 };

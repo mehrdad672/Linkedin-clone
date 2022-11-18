@@ -6,7 +6,7 @@ const Sidear = () => {
   const user = useSelector(state =>state.auth.user)
  
   return (
-    <div className="ml-10 sticky top-0 border border-gray-200 shadow-lg rounded-2xl ">
+    <div className="ml-10 sticky top-[70px] border border-gray-200 shadow-lg rounded-2xl h-[400px] ">
       <div className="w-[20vw] h-14 bg-cyan-500 rounded-t-xl "></div>
       <div className=" relative w-[20vw] bg-white flex flex-col items-center justify-center border  border-b-gray-300 ">
         

@@ -19,7 +19,7 @@ const user = useSelector(state=>state.auth.user)
 
         <div className="flex flex-col">
           <h1 className=" text-gray-700 text-sm capitalize ">{name}</h1>
-          {time &&  <p className="text-sm text-gray-500"> {time.toDate().toDateString()} </p>}
+          {time ?  <p className="text-sm text-gray-500"> {time.toDate().toDateString()} </p> : <Skeleton variant="rectangular" width={200} height={20} animation="wave" />}
         </div>
       </div>
       <p className="p-3 text-gray-700"> {message} </p>
