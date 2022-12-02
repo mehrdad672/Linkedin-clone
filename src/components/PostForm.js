@@ -35,17 +35,19 @@ if (enteredMessage){
         message: enteredMessage,
         time: serverTimestamp(),
         imageUrl: enteredUrl,
+        avatarurl:user.photoURL
       });
 }else {
   alert('message shouldnt be empty')
+  return
 }
-      
-      
       SetModalShow(false);
     };
     return (
       <Modal open={modalShow} onClose={modalClose} disableAutoFocus>
-        <div className="absolute top-[20%] left-[30%] w-[40vw] h-[25vw] bg-white rounded-2xl border border-gray-200 shadow-lg">
+        <div onClick={modalClose} className="h-screen flex justify-center items-center">
+
+        <div onClick={(e)=>e.stopPropagation()} className="relative w-[75vw] md:w-[55vw] lg:w-[40vw] bg-white rounded-2xl border border-gray-200 shadow-lg flex flex-col pb-20">
           <div className="flex justify-between items-center px-3 py-3 border-b border-gray-200 ">
             <h3 className="text-lg text-gray-600 font-semibold ">
               Create a post
@@ -71,14 +73,14 @@ if (enteredMessage){
           <div>
             <div className="px-3 py-3 flex items-center space-x-3">
              
-              {user.profilePic && (
+              {user.photoURL && (
                 <img
                   className="rounded-full w-12 "
-                  src={user.profilePic}
+                  src={user.photoURL}
                   alt="avatar"
                 />
               )}
-              {!user.profilePic && (
+              {!user.photoURL && (
                 <img
                   className="rounded-full w-12 "
                   src={avatar}
@@ -110,13 +112,14 @@ if (enteredMessage){
 
               <button
                 onClick={sendPost}
-                className="absolute right-3  bottom-4 bg-blue-700 hover:bg-blue-900 text-white rounded-2xl px-3 py-2"
+                className="absolute right-1  bottom-1 bg-blue-700 hover:bg-blue-900 text-white rounded-2xl px-3 py-2"
                 type="submit"
               >
                 Post
               </button>
             </form>
           </div>
+        </div>
         </div>
       </Modal>
     );
@@ -125,17 +128,17 @@ if (enteredMessage){
   return (
     <>
       <PostFormModal Show={modalShow} Close={modalClose} />
-      <div className="  bg-white w-[40vw] h-28 rounded-lg px-3 py-3 border border-gray-200 shadow-lg ">
+      <div className="  bg-white w-[95vw] md:w-[55vw] lg:w-[40vw] h-28 rounded-lg px-3 py-3 border border-gray-200 shadow-lg ">
         <div className="flex space-x-2">
         
-           {user.profilePic && (
+           {user.photoURL && (
                 <img
-                  className="border-2 border-white w-12 rounded-full "
-                  src={user.profilePic}
+                  className="border-2 border-white w-12 h-12 rounded-full "
+                  src={user.photoURL}
                   alt="avatar"
                 />
               )}
-              {!user.profilePic && (
+              {!user.photoURL && (
                 <img
                   className="border-2 border-white w-12 rounded-full "
                   src={avatar}
@@ -144,13 +147,13 @@ if (enteredMessage){
               )}
           <button
             onClick={modalOpen}
-            className=" w-[30vw] flex hover:bg-gray-200 items-center text-gray-500 h-12 border border-gray-300 rounded-3xl text-start px-3 py-5 focus:outline-none"
+            className=" w-[30vw] grow flex hover:bg-gray-200 items-center text-gray-500 h-12 border border-gray-300 rounded-3xl text-start px-3 py-5 focus:outline-none"
           >
             Start a post
           </button>
         </div>
-        <div className="flex mt-1 justify-center space-x-3 ">
-          <div className="flex space-x-3  hover:bg-gray-100 px-3 py-2 rounded-xl">
+        <div className="flex mt-1 justify-evenly mx-auto   ">
+          <div className="flex  hover:bg-gray-100 space-x-2 py-2 rounded-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -163,9 +166,9 @@ if (enteredMessage){
                 clip-rule="evenodd"
               />
             </svg>
-            <h3> Photo </h3>
+            <h3 className=""> Photo </h3>
           </div>
-          <div className="flex space-x-3  hover:bg-gray-100 px-3 py-2 rounded-xl">
+          <div className="flex justify-evenly space-x-2 hover:bg-gray-100  py-2 rounded-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -180,9 +183,9 @@ if (enteredMessage){
               />
             </svg>
 
-            <h3> Video </h3>
+            <h3 className=""> Video </h3>
           </div>
-          <div className="flex space-x-3 hover:bg-gray-100 px-3 py-2 rounded-xl">
+          <div className="flex space-x-2 hover:bg-gray-100  py-2 rounded-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -197,9 +200,9 @@ if (enteredMessage){
               />
             </svg>
 
-            <h3> Event </h3>
+            <h3 className=""> Event </h3>
           </div>
-          <div className="flex space-x-3 hover:bg-gray-100 px-3 py-2 rounded-xl">
+          <div className="flex space-x-2 hover:bg-gray-100 py-2 rounded-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -210,7 +213,7 @@ if (enteredMessage){
               <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
             </svg>
 
-            <h3> Article </h3>
+            <h3 className=""> Article </h3>
           </div>
         </div>
       </div>

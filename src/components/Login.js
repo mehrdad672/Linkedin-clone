@@ -29,11 +29,7 @@ const Login = () => {
           displayName:name ,
           photoURL:url
         }).then(()=>{
-          dispatch(signup({
-            email: signedupuser.email ,
-            displayName : signedupuser.displayName ,
-            profilePic: signedupuser.photoURL
-          }))
+          dispatch(signup(signedupuser))
         })
         
 
@@ -59,11 +55,7 @@ const Login = () => {
         // ...
         localStorage.setItem('user',JSON.stringify(signedinuser))
         console.log(localStorage.getItem('user'))
-        dispatch(signin({
-          email: signedinuser.email ,
-          displayName : signedinuser.displayName ,
-          profilePic: signedinuser.photoURL
-        }));
+        dispatch(signin(signedinuser));
         
         console.log(localStorage.getItem('user'))
         setEmail(null);
@@ -79,26 +71,27 @@ const Login = () => {
   };
 
   return (
-    <div className="">
-      <div className=" mt-10 bg-cyan-500 w-[30vw] mx-auto border border-gray-300 p-3 rounded-xl">
+   <>
+      <div className=" mt-10 bg-cyan-500 w-[85%] md:w-[65%] lg:w-[4
+        0%] mx-auto border border-gray-300 p-3 rounded-xl">
         <form onSubmit={signinHandler} className="flex flex-col space-y-3 shadow-lg ">
           <input
             className="focus:outline-none  p-2 rounded-xl "
-            placeholder="Enter your Fullname (only for register)"
+            placeholder="Enter your Fullname (Only for register)"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             className="focus:outline-none  p-2 rounded-xl "
-            placeholder="Enter your profile url (only for register)"
+            placeholder="Enter your profile url (Optional for register )"
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
           <input
             className="focus:outline-none  p-2 rounded-xl "
-            placeHolder="Enter your email"
+            placeHolder="Enter your email address"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -124,7 +117,7 @@ const Login = () => {
           register now
         </button>
       </div>
-    </div>
+      </>
   );
 };
 

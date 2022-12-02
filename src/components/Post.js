@@ -12,10 +12,10 @@ const user = useSelector(state=>state.auth.user)
   const unlikedstyle = "w-6 h-6 cursor-pointer hover:shadow-md";
   return (
     
-    <div className="w-[40vw] mt-3 rounded-xl bg-white border border-gray-200 shadow-lg">
+    <div className="w-[95vw] md:w-[55vw] lg:w-[40vw]  mt-3 rounded-xl bg-white border border-gray-200 shadow-lg">
       <div className="px-3 py-3 flex items-center space-x-3">
-        {user.profilePic && <img className="rounded-full w-8 " src={user.profilePic} alt="avatar" />}
-        {!user.profilePic && <img className="rounded-full w-8 " src={avatar} alt="avatsdar" />}
+        {avatarUrl && <img className="rounded-full w-8 " src={avatarUrl} alt="avatar" />}
+        {!avatarUrl && <img className="rounded-full w-8 " src={avatar} alt="avatsdar" />}
 
         <div className="flex flex-col">
           <h1 className=" text-gray-700 text-sm capitalize ">{name}</h1>
