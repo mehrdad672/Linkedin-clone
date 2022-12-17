@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,updateProfile
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { firebaseapp } from "../firebase";
-import { signin, signout,signup } from "../app/store";
+import { signin, signout, signup } from "../app/store";
+import Loginfield from "../UI/Loginfield";
 
 const Login = () => {
-
   const auth = getAuth(firebaseapp);
   const dispatch = useDispatch();
 
@@ -17,23 +18,21 @@ const Login = () => {
   const [password, setPassword] = useState(null);
   const [name, setName] = useState(null);
   const [url, setUrl] = useState(null);
- 
+
   const signupHandler = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const signedupuser = userCredential.user;
-        
-        updateProfile(signedupuser , {
-          displayName:name ,
-          photoURL:url
-        }).then(()=>{
-          dispatch(signup(signedupuser))
-        })
-        
 
-       
+        updateProfile(signedupuser, {
+          displayName: name,
+          photoURL: url,
+        }).then(() => {
+          dispatch(signup(signedupuser));
+        });
+
         setEmail("");
         setPassword("");
         // ...
@@ -42,22 +41,23 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(errorMessage);
-        setEmail('');
-        setPassword('');
+        setEmail("");
+        setPassword("");
         // ..
-      });}
+      });
+  };
   const signinHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const signedinuser = userCredential.user;
         // ...
-        localStorage.setItem('user',JSON.stringify(signedinuser))
-        console.log(localStorage.getItem('user'))
+        localStorage.setItem("user", JSON.stringify(signedinuser));
+        console.log(localStorage.getItem("user"));
         dispatch(signin(signedinuser));
-        
-        console.log(localStorage.getItem('user'))
+
+        console.log(localStorage.getItem("user"));
         setEmail(null);
         setPassword(null);
       })
@@ -69,55 +69,105 @@ const Login = () => {
         setPassword(null);
       });
   };
+  const guestHandler= (e)=>{
+    e.preventDefault();
+    dispatch(signup({email:'guest@gmail.com',displayName:'guest',photoURL:''}));
+  }
 
   return (
-   <>
-      <div className=" mt-10 bg-cyan-500 w-[85%] md:w-[65%] lg:w-[4
-        0%] mx-auto border border-gray-300 p-3 rounded-xl">
-        <form onSubmit={signinHandler} className="flex flex-col space-y-3 shadow-lg ">
-          <input
-            className="focus:outline-none  p-2 rounded-xl "
-            placeholder="Enter your Fullname (Only for register)"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className="focus:outline-none  p-2 rounded-xl "
-            placeholder="Enter your profile url (Optional for register )"
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <input
-            className="focus:outline-none  p-2 rounded-xl "
-            placeHolder="Enter your email address"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            className="focus:outline-none  p-2 rounded-xl"
-            placeHolder="Enter your password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+    <>
+      <div className="bg-[#D0BDF4] w-full py-10 h-screen">
+        <div className=" shadow-xl border-[#a0d2eb] bg-white w-[30%] mx-auto  border py-4 p-3 rounded-xl">
+          <form onSubmit={signinHandler} className="flex flex-col space-y-6  ">
+            <div className="relative  w-full mx-auto ">
+              <input
+                className="peer w-full rounded-xl focus:placeholder-transparent  focus:border-blue-500 border focus:border-2  border-[#8458B3] p-2 focus:outline-none"
+                placeholder="Fullname (only for register )"
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <label
+                className="uppercase transition-all duration-200 ease-in-out  absolute bg-white z-10 text-blue-500 -top-3  px-1 left-2 hidden peer-focus:inline-flex text-sm "
+                for="name"
+              >
+                Fullname
+              </label>
+            </div>
+
+            <div className="relative mt-10 w-full mx-auto ">
+              <input
+                className="peer w-full rounded-xl focus:placeholder-transparent  focus:border-blue-500 border border-gray-600 p-2 focus:outline-none"
+                placeholder="Profile url (optional for register )"
+                type="text"
+                id="avatar"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+              <label
+                className="uppercase transition-all duration-200 ease-in-out  absolute z-10 text-blue-500 -top-3 bg-white px-1 left-2 hidden peer-focus:inline-flex text-sm "
+                for="avatar"
+              >
+                Avatar
+              </label>
+            </div>
+            <div className="relative mt-10 w-full mx-auto ">
+              <input
+                className="peer w-full rounded-xl focus:placeholder-transparent  focus:border-blue-500 border border-gray-600 p-2 focus:outline-none"
+                placeholder="Email Address"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label
+                className="uppercase transition-all duration-200 ease-in-out  absolute z-10 text-blue-500 -top-3 bg-white px-1 left-2 hidden peer-focus:inline-flex text-sm "
+                for="email"
+              >
+                Email Address
+              </label>
+            </div>
+            <div className="relative mt-10 w-full mx-auto ">
+              <input
+                className="peer w-full rounded-xl focus:placeholder-transparent  focus:border-blue-500 border border-gray-600 p-2 focus:outline-none"
+                placeholder="Password"
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label
+                className="uppercase transition-all duration-200 ease-in-out  absolute z-10 text-blue-500 -top-3 bg-white px-1 left-2 hidden peer-focus:inline-flex text-sm "
+                for="Password"
+              >
+                Password
+              </label>
+            </div>
+
+            <button
+              className="bg-purple-600 p-2 rounded-xl  hover:bg-green-600 text-white"
+              type="submit"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+        <div className="flex justify-center space-x-2 mt-2">
+          <p> Not a member?</p>
           <button
-            className="bg-purple-600 p-2 rounded-xl  hover:bg-green-600 text-white"
-            type="submit"
+            onClick={signupHandler}
+            className="text-blue-900 hover:underline"
+            type="button "
           >
-            Login
+            register now
           </button>
-        </form>
+          <p>or</p>
+          <button onClick={guestHandler} className=" flex text-blue-900 hover:underline" type="button">Login as a <p className="text-green-700 font-semibold px-1">guest</p></button>
+        </div>
+        
       </div>
-      <div className="flex justify-center space-x-2">
-        <p> Not a member?</p>
-        <button onClick={signupHandler} className="text-blue-900 hover:underline" type="button ">
-          register now
-        </button>
-      </div>
-      </>
+    </>
   );
 };
 

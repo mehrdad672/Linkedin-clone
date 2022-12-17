@@ -43,7 +43,7 @@ const Feed = () => {
     />
   ));
   return (
-    <div className="px-10  ">
+    <div className=" max-w-full ">
       <PostForm />
       
       {postList ? postList : <h1>loading...</h1>}

@@ -14,7 +14,7 @@ function App() {
       {!isloggedin ? (
         <Login />
       ) : (
-        <main className="bg-[#f3f2ef] py-5 flex lg:justify-evenly justify-center md:items-start md:justify-center lg:items-start items-center flex-col md:flex-row  px-4 max-w-full">
+        <main className="bg-[#f3f2ef] py-5 flex lg:justify-evenly justify-center md:items-start md:justify-center lg:items-start items-center flex-col md:flex-row space-x-4  px-4 max-w-full">
           <Sidebar />
           <Feed />
           <Widgets />

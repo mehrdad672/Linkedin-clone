@@ -6,7 +6,7 @@ const Sidebar = () => {
   const user = useSelector(state =>state.auth.user)
  
   return (
-    <div className=" mb-8 w-[95vw] md:w-[55] lg:w-[40vw]  md:flex md:sticky  flex-col top-[70px] border border-gray-200 shadow-lg rounded-2xl md:h-[400px] w-[30vw] lg:w-[25vw] mx-auto  ">
+    <div className=" mb-8 xs:w-[95vw] md:w-[55vw] h-auto  md:flex md:sticky  flex-col top-[70px] border border-gray-200 shadow-lg rounded-2xl md:h-[400px] w-[30vw] lg:w-[25vw] mx-auto  ">
       <div className=" h-14 bg-cyan-500 rounded-t-xl "></div>
       <div className=" relative  bg-white flex flex-col items-center justify-center border  border-b-gray-300 ">
         
